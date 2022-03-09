@@ -3,13 +3,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "react-bootstrap";
 import {useState} from "react";
 
-function App() {
+function Aufgabe4() {
 
-    const [str1, setStr1] = useState("")
-    const [str2, setStr2] = useState("")
+    const [word1, setWord1] = useState("")
+    const [distance, setDistance] = useState(0)
+    let text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore\n" +
+        "                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea\n" +
+        "                rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum\n" +
+        "                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore\n" +
+        "                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet\n" +
+        "                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
-
-    const levenshteinDistance = (str1 = '', str2 = '') => {
+    const levenshteinDistance = (str1 = word1, str2 = text) => {
         const track = Array(str2.length + 1).fill(null).map(() =>
             Array(str1.length + 1).fill(null));
         for (let i = 0; i <= str1.length; i += 1) {
@@ -41,26 +46,27 @@ function App() {
                     <span className="input-group-text" id="inputGroup-sizing-sm"><p>Wort 1</p></span>
                 </div>
                 <input onChange={(event) => {
-                    setStr1(event.target.value)
+                    setWord1(event.target.value)
                 }} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
             </div>
 
             <div className="input-group input-group-sm mb-3">
                 <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-sm"><p>Wort 2</p></span>
+                    <span className="input-group-text" id="inputGroup-sizing-sm"><p>Distance</p></span>
                 </div>
                 <input onChange={(event) => {
-                    setStr2(event.target.value)
+                    setDistance(event.target.value)
                 }} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
             </div>
 
+            <h3>Text:</h3>
+            <p>{text}</p>
 
-            <p>Wort1 : {str1}</p>
-            <p>Wort2 : {str2}</p>
-            <p>levenshteinDistance: {levenshteinDistance(str1,str2)}</p>
+            <p>Wort1 : {word1}</p>
+            <p>Max Distance : {distance}</p>
 
         </>
     );
 }
 
-export default App;
+export default Aufgabe4;
